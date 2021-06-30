@@ -6,6 +6,8 @@
 4. admin의 값을 console 창에 띄워보세요. "John"이 출력되어야 합니다.
 */
 
+// var admin, myName; -> 여러개 한번에 선언 가능
+// 저장 해야 실행 가능
 var myName = 'John';
 var admin = myName;
 console.log(admin);
@@ -22,5 +24,6 @@ console.log(admin);
    변수 이름은 어떻게 지어야 할까요?
 */
 
-var planet = 'Earth';
-var userName = 'a'
+var ourLivingPlanet = 'Earth';
+var currentUserName = 'a'
+var loginUserName 

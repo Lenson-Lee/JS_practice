@@ -35,3 +35,4 @@ var a = '홍길동';
 var z = 'id_adfadfadf!#!#';
 var xu = 'adfaf';
 
+//5. 키워드는 식별자 이름으로 사용 불가능
