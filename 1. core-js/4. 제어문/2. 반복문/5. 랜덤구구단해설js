@@ -50,5 +50,30 @@ for (var n = 1; n <=9; n++) {
 }
 alert(printText);
 
-//늦게와서 놓쳤을 수 있으니 다시 공부하기
+
+
+//강사쌤해설
+
+var m = Math.floor(Math.random() * 8) + 2;
+
+//출력할 문자
+var printText = '';
+
+printText += '====================\n';
+printText += `랜덤 구구단 ${m}단\n`;
+printText += '====================\n';
+// alert('====================');
+// alert(`랜덤 구구단 ${m}단`);
+// alert('====================');
+for (var n = 1; n <= 9; n++) {
+    // alert(`${m} x ${n} = ${m*n}`);    
+    printText += `${m} x ${n} = ${m*n}\n`;
+}
+alert(printText);
+
+/*var n = 1;
+while (n <= 9) {
+    console.log(`2 x ${n} = ${2*n}`);
+    n++;
+}*/
 

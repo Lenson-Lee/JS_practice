@@ -26,7 +26,7 @@ console.log('=================================================');
 
 
 var num = 1; //begin이 1이라 13부터 시작은 안된다.
-while (num >= 100) {
+while (num <= 100) {
     if(num % 13 === 0) {
         console.log(num);
         //num++은 if가 참이든 거짓이든 반복되야해서 if문에 넣으면 계속 false가 나올 것이다.

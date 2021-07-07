@@ -15,35 +15,53 @@
 //한 번 밤복할때마다 랜덤숫자 2개 만들기. 더하기만 해보고 할 만 하면 사칙연산 랜덤으로 하기
 // 답입력 칸과 정답 비교하고 alert띄우고 정답오답 카운트 띄우고 0 하면 종료 및 카운트 출력
 
-
-var i = Math.floor(Math.random() * 100) + 1
-var j = Math.floor(Math.random() * 100) + 1
-var countTrue = 0;
-var countFalse = 0;
-var answer = +prompt(`${i} + ${j}의 값을 구하세요`)
+var o = 0, x = 0; //정,오답횟수
 
 while (true) {
-    if (answer === 0) {
-        alert('프로그램이 종료되었습니다. \n 정답횟수 `${countTrue}`개, 오답횟수 `${countFalse}`개');
+    var first = Math.floor(Math.random() * 100);
+    var second = Math.floor(Math.random() * 100);
+
+    var input = +prompt(`${first} + ${second} 의 값은?`); //사용자가 입력한 답
+    var answer = first + second; //진짜 답
+
+
+    if (input === 0) {
         break;
+    } else if (input === answer) {
+        alert('정답');
+        o++;
+    } else {
+        alert('오답');
+        x++;
     }
-
-    +prompt(`${i} + ${j}의 값을 구하세요`)
-        if (answer === `${i+j}`) {
-            countTrue++;
-            console.log('정답입니다');
-        } else {
-            countFalse++;
-            console.log('오답입니다');
-        }
-    
 }
+alert(`정답횟수${o}회, 오답횟수${x}회`);
 
 
-// if (answer === `${i+j}`) {
-//     countTrue++;
-//     console.log('정답입니다');
-// } else if (answer !== 0) {
-//     countFalse++;
-//     console.log('오답입니다');
-// } 
+
+
+
+
+
+// var i = Math.floor(Math.random() * 100) + 1
+// var j = Math.floor(Math.random() * 100) + 1
+// var countTrue = 0;
+// var countFalse = 0;
+// var answer = +prompt(`${i} + ${j}의 값을 구하세요`)
+
+// while (true) {
+//     if (answer === 0) {
+//         alert('프로그램이 종료되었습니다. \n 정답횟수 `${countTrue}`개, 오답횟수 `${countFalse}`개');
+//         break;
+//     }
+
+//     +prompt(`${i} + ${j}의 값을 구하세요`)
+//         if (answer === `${i+j}`) {
+//             countTrue++;
+//             console.log('정답입니다');
+//         } else {
+//             countFalse++;
+//             console.log('오답입니다');
+//         }
+
+// }

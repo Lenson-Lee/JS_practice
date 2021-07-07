@@ -29,7 +29,7 @@ console.log(Math.round(3.3)); //소숫점 3을 반올림    3
 Math.random() //0.0~ 1.0미만
 Math.random() * 11; // 0.0~11.0 미만
 
-var rn = Math.floor(Math.random() * 11);//0-11미만. fllor해서 11.0이 아니라 11???
+var rn = Math.floor(Math.random() * 11);//0-11미만. floor해서 11.0이 아니라 11???
 console.log(`랜덤정수: ${rn}`);
 
 //1~45 랜덤 정수

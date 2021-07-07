@@ -23,18 +23,20 @@ x--; //다른 연산과 섞이면 복잡해져서 문제가 생겨 비추천.
 console.log(`x: ${x}`);
 
 
-//전위연산(prefix), 후위연산(postfix)
-console.log("===========================");
+// //전위연산(prefix), 후위연산(postfix)
+// console.log("===========================");
 
-var a = 10, result;
+// var a = 10, result;
 
-result = a++;
-consolele.log(`1 - result: &{result}, a: &{a}`); //result 10 a 12 ->???result가 11이 아니네
+// result = a++;
+// consolele.log(`1 - result: ${result}, a: ${a}`); 
+// //result 10 a 12 ->???result가 11이 아니네
 
-//대입연산같이 다른 연산과 같이 섞이면 
+// //대입연산같이 다른 연산과 같이 섞이면 
 
-result = ++a;
-consolele.log(`2 - result: &{result}, a: &{a}`); //result 12, a 12
+// result = ++a;
+// consolele.log(`2 - result: ${result}, a: ${a}`); 
+// //result 12, a 12
 
 
 console.log("===========================");

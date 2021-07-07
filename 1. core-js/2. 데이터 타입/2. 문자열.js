@@ -15,11 +15,11 @@ var filePath = 'D:\\temp\\new.jpg';
 // 파일경로 근데 \t가 아까 본 탈출문자, 개행태그와 같아서 인식이 잘못 된다. ->백슬래시를 두 번씩 써서 특수문자임을 나타낸다
 
 
-// 템플릿 리터럴 (ES6+)
+// 템플릿 리터럴 (ES6+) `${}`
 console.log("===========");
 
 
-var template = '<ul>\n\t<li>\n\t</li></ul>;
+var template = `<ul>\n\t<li>\n\t</li></ul>`;
 // 빽팁 쓰면 줄 개행 가능. html처럼 작성 가능
 var template = `<ul>
     <li>
@@ -35,7 +35,7 @@ var day = 15;
 var anni = '광복절';
 
 // console.log(month + '월' +day + '일은' +anni +'입니다' );
-console.log('${month}월 ${day}일은 ${anni}입니다.');
+console.log(`${month}월 ${day}일은 ${anni}입니다.`);
 // '" 로 하는게 아닌 백팁으로 입력해야 한다.
 
 

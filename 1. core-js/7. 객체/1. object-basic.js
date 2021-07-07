@@ -56,11 +56,11 @@ console.log(dog);
 
 //객체 프로퍼티 전체 순회
 //for ~ in (ES6)
-console.log('====================');
+console.log('========?????=========');
 
 //key 가 지금 string ->[]로 쓰기
-for (var key in cat){
-    var value = cat.key;
+for (var key in cat) {
+    var value = cat[key];
     console.log(`${key}: ${value}`);
 }
 
