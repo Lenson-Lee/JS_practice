@@ -7,7 +7,7 @@ function calcNumbersTotalAndAverage(...result) { //함수정의를 항상 제일
     var total = 0;
     var avg = result.length;
     for (var num of result) {
-        total += num
+        total += num;
     }
     return total;
 
