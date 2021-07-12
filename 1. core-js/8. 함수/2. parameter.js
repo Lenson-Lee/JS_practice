@@ -54,3 +54,27 @@ sayHello('');
 
 //매개변수가 없는 함수
 
+function selectRandomFood () {
+    var rn = Math.random();
+    if (rn > 0.66) {
+        return '짜장면';
+    } else if (rn > 0.33) {
+        return '볶음밥';
+    } else {
+        return '짬뽕';
+    }
+}
+
+var food = selectRandomFood();
+console.log(`선택된 음식: ${food}`);
+
+//함수의 인수값의 타입이 잘못 전달되는 경우
+function multiply(n1, n2) {
+    if (typeof n1 !== 'number' || typeof n2 !== 'number') {// 타입을 숫자로 체크를 해서 잘못된 연산을 방지
+        console.log('인수를 숫자로 전달하세요');
+        return; //함수를 강제 종료
+    }
+    return n1 * n2;
+}
+var result3 = multiply(5,8);
+console.log(`result3: ${result3}`);

@@ -1,5 +1,7 @@
 //객체의 중첩 구조
 //게시글 데이터(게시글 하나에는 제목 내용 일자 작성자 조회수 등 많은게 들어있다.. 그래서 객체를 쓴다.)
+//json예시 검색해보면 도움 된다.
+
 
 var articleList = { //타입은 객체 3개
     admin: 'admin123', 
@@ -26,5 +28,5 @@ var articleList = { //타입은 객체 3개
 }
 
 console.log(articleList.articles[0]);
-console.log(articleList.articles[1].title);
-console.log(articleList.articles.length);
+console.log(articleList.articles[1].title); //안녕안녕
+console.log(articleList.articles.length); //3

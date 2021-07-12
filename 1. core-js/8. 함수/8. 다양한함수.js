@@ -30,7 +30,7 @@ function countdown(n) {
     }
 }
 //재귀 함수 호출
-countdown(5); //호출만 적어두면 무한루프 걸린다. 큰일. -> if문과 n-1로 한계를 준다...
+countdown(5); //호출만 적어두면 무한루프 걸린다. 큰일. -> if문과 n-1로 한계(탈출)를 준다...
 
 
 
@@ -98,4 +98,10 @@ console.log(`result: ${result}`);
 // doubleMultiply를 작성하시오
 //============================
 
-var doubleMultiply = (n) => n ** 2;
+var doubleMultiply = n => n ** 2; //매개변수 하나면 이것도 생략 가능.
+console.log(`n = ${n}`);
+
+
+
+
+//콜백 함수(중요. 동작이 있는 이벤트프로그램, 서버통신기록 프로그래밍할때 주로 쓰인다.)

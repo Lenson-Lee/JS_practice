@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <!-- //id는 중복해서 쓰는 거 아니다 -->
+        <li id="apple">사과</li> 
+        <li id="banana">바나나</li>
+        <li id="grape">포도</li>
+        <li id="pineapple">파인애플</li>
+    </ul>
+
+    <script>
+        // console.log(document);
+        //document = var document 엔진에서 자동으로 생성되어있는 태그?
+        // console.log(document.body);
+        //document = var document F12해서 영역 확인하기
+
+        //getbi
+        //관례적으로 노드변수의 이름 앞에 $를 붙인다.
+        //일반변수와 html제어변수의 차이를 바로 알 수 있다.
+        const $apple = document.getElementById('apple');
+        console.log($apple);
+        
+        document.body.style.background = 'tomato';
+
+        //없는 아이디로 노트를 추둑하면?
+        const $selem = document.getElementById('peach');
+        console.log( $elem)
+
+        //요소에 id를 부여하면 자동으로 아이디이름의 전역변수가 생성된다.
+        //->이렇게 쓰기 금지
+        banana.style.color = 'yellow';
+
+        //아이디와 동일한 이름의 변수를 선언하면 자동 전역변수는 취소된다.
+        // const grape = '포도넘조아';
+        grape.style.name = 'violet';
+    </script>
+</body>
+</html>

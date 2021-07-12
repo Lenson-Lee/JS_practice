@@ -18,9 +18,12 @@ var circle4 = 31.4159 * 100 * 2;
 
 //재활용성 측면과 수정,유지보수 측면에서 함수를 사용해야 하는 이유가 나온다.
 
-///////////////////////////////////////////////
+//========================================================================
+
+
 
 //1. 함수의 정의 function define (기본 형태 function + 식이름(변수명규칙 지켜서정하기) + 소괄호 + 중괄호오픈)
+// 함수 정의를 수정하면 함수를 쓴 값이 다 맞춰서 변경된다.
 function calcAreaCircle(r) {
     //명령
     var areaCircle = 3.14159 * r ** 2;
@@ -36,3 +39,24 @@ console.log(`result1: ${result1}`);
 //반지름 10인 원의 넓이
 var result2 = calcAreaCircle(10);
 console.log(`result2: ${result2}`);
+
+
+//함수의 정의 (2) : 함수 리터럴
+function add1(n1, n2) {
+    return n1 + n2;
+}
+add1(10, 20);
+
+
+var add = function() {}; //<----함수 리터럴
+
+
+var add2 = function(n1, n2) {
+    return n1 + n2;
+};
+add2(30, 50);
+
+
+//함수를 변수에 할당
+var cac = calcAreaCircle;
+cac(5);

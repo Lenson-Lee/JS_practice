@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id = "fruits">
+        <!-- //id는 중복해서 쓰는 거 아니다 -->
+        <li id="apple">사과</li> 
+        <li id="banana">바나나</li>
+        <li id="grape">포도</li>
+        <li id="pineapple">파인애플</li>
+    </ul>
+    <ul>
+        <li>치즈</li>
+        <li>양파</li>
+    </ul>
+
+    <script>
+        //유사배열
+        //객체형태지만 키가 인덱스처럼 순차적 숫자척럼 구성되고 lengh 프로퍼티를가진
+        //배열과 비섯한 형태의 객체
+
+        // const arr = {
+        //     a: 'a',
+        //     1: 'b',
+        //     2: 'c',
+        //     length: 3;
+
+        // };
+        // console.log(arr[1]);
+        // console.log(arr.length);
+        //배열이면 arr.push('d')가 푸쉬가 되야했는데
+
+
+
+        console.log('=====================');
+
+        const $fruits = document.getElementsById('fruits');
+        const $elements = $fruits.getElementsByTagName('li');
+        //치명적인 단점 다른 ul 속의 li들이 있다하면 그것들까지 다 데려와버린다..
+        //ul에 id를 달아줘 구분한 후에 li를 잡는다. -> 안쓸예정.
+        console.log($fruits);
+
+        $fruits[1].style.color = 'yellow';
+        $fruits.banana.style.background = 'yellowgreen';
+
+
+        for (let i = 0; i < $elements.length; i++){
+            $elements[i].style.fontSize = '30px';
+        }
+
+        for (let e of $elements) {
+            e.style.fontSWtyle = 'italic';
+        }
+    </script>
+</body>
+</html>
