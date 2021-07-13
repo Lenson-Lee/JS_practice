@@ -35,25 +35,63 @@
     </div>
 
     <script>
+// ????
+// ????
         //1. 전체 요소의 font-size를 20px로 지정하세요.
+            const $body = document.querySelectorAll('body');
+            
+            // $body.style.fontSize = '20px';
+
+
 
         //2. h1요소의 폰트 색상을 red로 지정하세요.
         // document.querySelector('h1').style.color = 'red';
+            const $h1 = document.querySelector('body>#wrap>h1');
+            $h1.style.color = 'red';
+
+
 
         //3. id가 firstTitle인 요소의 폰트 색상을 green으로 지정하세요.       
+            const $first = document.getElementById('firstTitle');
+            $first.style.color = 'green'
+
+
 
         //4. 클래스가 nextTitle인 요소의 폰트 색상을 blue로 지정하세요.
+            const $next = document.querySelector('body>#wrap>.nextTitle');
+            $next.style.color = 'blue';
 
+            
+// ????
+// ????
         //5. 클래스 obj3의 자식요소 li요소 모두의 font-weight를 bold로 지정하세요.    
-
+        // // console.log($object3);
+        // $object3.style.fontWeight = 'bold';
+        
+        
+// ????
+// ????       
         //6. 클래스 obj3의 요소 노드를 취득한 후 해당 요소 노드를 통해 
         //   클래스 theObj1을 취득한 뒤 폰트색상을 red로 지정하세요.          
+            const $object3 = document.querySelectorAll('body>#wrap>.obj3');
+
+            console.log($object3);
+            const $Obj1 = $object3.theObj1;
+            console.log($Obj1);
+            // $Obj1.style.color = 'red';
+            
+
+
 
         //7. 클래스 obj5의 요소 노드를 취득한 뒤 부모 요소 노드에
         //   접근하여 border를 2px dashed #f00 으로 지정하세요. 
         
         //8. 클래스 obj4의 요소 노드를 취득한 뒤 다음 형제 노드에
         //   접근하여 폰트 색상을 orange로 지정하세요.      
+            const $obj4 = document.querySelectorAll('body>#wrap>.obj4');
+            console.log($obj4);
+
+
 
         //9. 클래스 obj5의 요소 노드를 취득한 뒤 이전 형제 노드에
         //   접근하여 text-align을 right로 지정하세요. 
