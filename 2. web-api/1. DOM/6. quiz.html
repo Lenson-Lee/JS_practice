@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- CSS 쓰지말고 무조건 JS 쓰기
+            여러개면 querySelectorAll, 단일이면 All없이. -->
+
+    <!-- #wrap>ul#list1>li{리스트$}*7 -->
+    <div id="wrap">
+        <ul id="list1">
+            <li>리스트1</li>
+            <li>리스트2</li>
+            <li>리스트3</li>
+            <li>리스트4</li>
+            <li>리스트5</li>
+            <li>리스트6</li>
+            <li>리스트7</li>
+        </ul>
+    </div>
+
+    <script>
+        //1. id="list1"인 요소에 <li> 요소중  홀수번째 요소만 선택후 배경색상 yellow 적용
+            const $oddElements = document.querySelectorAll('#list1 > li:nth-child(odd)');
+            // console.log($oddElements);
+
+            for (let li of [...$oddElements]) {
+                li.style.background = 'yellow';
+            }
+
+
+
+
+        //2. id="list1"인 요소에 <li> 요소중   짝수번째 요소만 선택후 배경색상 gray 적용
+                //??
+            const $evenElements = document.querySelectorAll('#list1 > li:nth-child(even)');
+            console.log($evenElements);
+
+            for (let lieven of [...$evenElements]) {
+                lieven.style.background = 'gray';
+            }
+
+
+
+
+        //3. id="list1"인 요소에 <li> 요소중   첫번째 <li>요소만 선택후 폰트색상 red 적용
+
+            const $first = document.querySelector('#list1 > li:first-child');
+            // console.log($first);
+
+            $first.style.color = 'red';
+
+
+
+
+        //4. id="list1"인 요소에 <li> 요소중  마지막번째 <li>요소만 선택후 폰트색상 green 적용
+
+            const $last = document.querySelector('#list1 > li:last-child');
+            // console.log($last);
+            $last.style.color = 'green';
+
+
+
+
+
+        //5. id="list1"인 요소에 <li> 요소중  두번째 <li>요소만 선택후 font-style: italic 적용
+
+            const $second = document.querySelector('#list1 > li:nth-child(2)');
+            // console.log($second);
+            $second.style.fontStyle = 'italic';
+
+            // justifyContent 같이 특수문자 안되니 카멜케이스로 바꾼다. borderBottomColor
+            // 크롬 콘솔에서 property - style 들가면 카멜케이스 속성 나열되어있다.
+
+
+
+
+
+        //6. id="list1"인 요소에 <li> 요소중  3번째 이전 요소만 선택후 
+        //   border: 2px dotted aqua 적용 (1, 2번째만 선택)
+
+            const $two = document.querySelectorAll('#list1 > li');
+            // console.log($two);
+
+            const $realArray = [...$two]; //배열로 바꾸고 for문
+            for (let i = 0; i < 2; i++){
+                // console.log($realArray[i]);
+                $realArray[i].style.border = '3px dotted aqua';
+            }
+
+            
+
+        //7. id="list1"인 요소에 <li> 요소중  3번째 이후요소만 선택후
+        //   border 2px dashed violet 적용 (3번째부터 끝까지 선택)
+
+            const $three = document.querySelectorAll('#list1 > li:nth-child(n+3)');
+            console.log($three);
+
+            for (let $li of [...$three]) {
+            $li.style.border = '2px dashed violet';
+        }
+ 
+
+
+        //오타좀.....내지마.....
+        //강사쌤 오타 실수낸거 건당 500원만 받았어도..빌딩...건물주........
+    </script>
+</body>
+</html>

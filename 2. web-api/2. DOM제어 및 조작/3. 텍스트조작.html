@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        span {
+            color: crimson;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="greeting">Hello <span>World!</span></div>
+
+    <script>
+        const $greeting = document.querySelector('#greeting');
+        console.log($greeting.textContent); //span까지 포함되서 나온다.
+
+        //$greeting.textContent = '<span>안녕</span>하세요'; //텍스트 내용이 교체되어 있다. span살리고싶은데..
+        $greeting.innerHTML = '<span>안녕</span>하세요'; //해결^^!
+    </script>
+</body>
+
+</html>

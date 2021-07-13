@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="wrap">
+        <ul id="fruits">
+            <li>apple</li>
+            <li>banana</li>
+            <li>grape</li>
+        </ul>
+    </div>
+
+
+    <!-- table#board>tr*2>td*2 -->
+    <table id="board">
+        <tr>
+            <td>a</td>
+            <td>b</td>
+        </tr>
+        <tr>
+            <td>c</td>
+            <td>d</td>
+        </tr>
+    </table>
+
+    <script>
+
+        const $banana = document.querySelector('#fruits > li:nth-child(2)');
+
+        //부모노드 탐색
+        const parent = $banana.parentNode; //fruits
+        console.log(parent);
+
+        const ancient = $banana.parentNode.parentNode; //wrap - Node를 타고 부모 올라가기
+        console.log(ancient);
+
+
+        //다음 형제노드 탐색
+        //바나나동생 포도 찾기
+        const next = $banana.nextElementSibling;//nextSibling은 텍스트엘리먼트가 포함될 수 있으니 엘리먼트 붙이기.
+        console.log(next);
+
+        //이전 형제노드 탐색
+        const prev = $banana.previousElementSibling;
+        console.log(prev);
+
+        const prev2 = next.previousElementSibling;
+        console.log($banana === prev2); //true
+
+        //테이블 요소노드 취득
+        const $board = document.getElementById('board');
+        const child = $board.children //예상 :tr 두 개가 들어가야한다
+        console.log(child);// tbody가 먼데 들어옴? -> 
+                            //table 태그는 아래에 자동으로 tbody 태그가 삽입되서 tr이 안잡힌다.
+
+            //tr을 잡기 위해선?
+        const trList = $board.firstElementChild.children;
+        console.log(trList);        
+    </script>
+</body>
+</html>

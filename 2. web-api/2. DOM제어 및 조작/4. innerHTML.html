@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- <style>
+        span {
+            color: crimson;
+        }
+    </style> -->
+
+</head>
+
+<body>
+
+    <div id="greeting">Hello <span>World!</span></div>
+
+    <ul id="fruits">
+        <li>apple</li>
+    </ul>
+
+    <script>
+        const $greeting = document.querySelector('#greeting');
+        
+        console.log($greeting.textContent);
+        console.log($greeting.innerHTML);
+
+        // $greeting.textContent = '<span>하하</span>'  //이건 안된다.
+        $greeting.innerHTML = '<span>하하</span>'  
+
+        const $fruits = document.querySelector('#fruits');
+        
+        //노드추가
+        $fruits.innerHTML += '<li>banana</li>';
+
+
+        
+        //노드 교체, 삭제는 innerHTML을 사용하면 위험하다.
+        //기존의 요소를 변경하는 것이기 때문에 오류가 날 수 있고 성능상 문제도 있다.
+
+        //노드교체
+        // $fruits.innerHTML = '<li>grape</li>';
+
+        //노드삭제
+        // $fruits.innerHTML = '';
+
+
+    </script>
+</body>
+
+</html>

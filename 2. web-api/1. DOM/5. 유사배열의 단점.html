@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    ul > li {
+        font-size: 30px;
+    }
+    .red {
+        color: crimson
+    }
+    .blue {
+        color: royalblue;
+    }
+</style>
+
+</head>
+<body>
+    <!-- ul#fruits>li.red*4 -->
+    <ul id="fruits">
+        <li class="red">Apple</li>
+        <li class="red">banana</li>
+        <li class="red">Grape</li>
+        <li class="red">Peach</li>
+    </ul>
+
+    <script>
+        //HTMLVollection : 유사배열이라는 뜻 - Live DOM
+        const $elements = document.getElementsByClassName('red');
+
+        for (let i = 0; i < $elements.length; i++) {
+            $elements[i].className = 'blue'; //유사배열보다는 HTMLcollection문제. 왜 애플 그레이프만 바뀌나?
+            //Apple이 [i = 0]일 때 blue가 되어서 .red에서 빠져 banana가 [0]번째로 바뀐다....
+            //그래서 [i =1]차례가 바나나를 건너뛰고 Grape가 되어서 둘 만 바뀜 피치는 i=2가 아니어서 탈락.
+
+            //실시간 변동하는 컬렉션은 고정화된 배열로 바꿔놓고 처리해야한다. 즉 '완전한 배열'로 변경해야함.
+            //유사배열객체를 진짜 배열로 변환하는 방법 2가지가 있다.
+
+
+            //무조건 배열로 바꿔서 처리하는게 안전하다.
+
+            //????왜 둘 다 안되지..
+            //1) ES5 이전의 방법
+            // const realArray = Array.from($elements);//바꾸고싶은 유사배열객체를 인수로 넣는다.
+
+            //2) ES6+
+            const realArray = [...$elements];
+
+            console.log(realArray);
+
+            //이건 되네..
+            for (let i = 0; i < realArray.length; i++){
+                realArray[i].className = 'blue';
+            }
+        }
+    </script>
+</body>
+</html>

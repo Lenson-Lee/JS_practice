@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="fruits">
+        <li class="apple">apple</li>
+        <li class="banana">banana</li>
+        <li class="grape">grape</li>
+    </ul>    
+    
+    <div class="text">
+        <!-- 엔터 꼭 치기 지금 일부러 이러는거다 -->
+    </div>
+
+    <script>
+        
+
+        //노드탐색의 기점이 되는 요소 취득
+        const $fruits = document.getElementById('fruits');
+        console.log($fruits);
+                //fruits->ul은 자식이 있다
+                //크롬콘솔 위에 Element 들어가고 밑에 Style있는 쪽에서 properties 보면 Child에 7개가 뜬다.
+                //ul \n 첫째, \n도 데려온다..? li를 엔터 안 치고 일렬로 나열하면 세 개가 나온다. 
+                //자식노드를 탐색할 때는=> childnodes를 쓰지 말기를 권장 + children 쓰기!
+        
+        //기준노드의 모든 자식노드를 탐색, 텍스트노드(엔터) 포함
+        const childNodes = $fruits.childNodes;
+        console.log(childNodes);
+        
+        //기준노드의 모든 자식노드를 탐색, 텍스트노드 제외
+        const children = $fruits.children;
+        console.log(children);
+
+        //기준노드의 첫번째 자식 노드를 탐색
+        console.log($fruits.firstChild);//textnode가 나온다
+        console.log($fruits.firstElementChild);//text를 뺀 첫번째
+        
+        //기준노드의 마지막 자식 노드를 탐색
+        console.log($fruits.lastChild);//textnode가 나온다
+        console.log($fruits.lastElementChild);//text를 뺀 첫번째
+
+
+        //기준 노드의 자식 노드 존재 여부 확인
+        //hasChildNodes()는 공백텍스트 존재시 true가 나옴에 주의
+        const $textDiv = document.querySelector('.text');
+        console.log($textDiv.hasChildNodes()); //hasChildNodes는 함수여서 콜 해야한다.
+                //공백이 있으면 true라고 뜬다. -> 공백이 텍스트노드가 생겨서 자식이 있는거로 판단된다.
+                //공백이 없으면 자식노드 없는 셈.   
+        //해결법) 텍스트 노드를 제외한 자식 요소노드의 존재 유무 확인
+        console.log(!!$textDiv.children.length);   //엔터만 친 태그는 0이고 0은 논리!!로 false가 나온다.
+                                                  //속에 자식이 있으면 true. 0만 아니면 다 true.
+
+
+
+    </script>
+</body>
+</html>
