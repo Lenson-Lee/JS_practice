@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="email" id="account" value="abc123@naver.com">
+
+
+    <SCript>
+
+        const $input = document.querySelector('input');
+        
+        //input태그의 value속성 값을 얻고 싶다.
+        // const email = $input.attributes.value.value;
+        const email = $input.getAttribute('value'); //같은 말이다. 간단하게 쓸 수 있음.
+        console.log(email);
+        console.log($input.getAttribute('id'));
+
+        //value속성의 값을 변경하고 싶다.
+        // $input.attributes.value.value = 'bbb444@gmail.com' 밑과 같은 말인데 밑이 더 간편
+        $input.setAttribute('value', 'bbb444@gmail.com');
+
+
+        //input에 새로운 속성 추가
+        $input.setAttribute('title', '기존에 없던 속성이다~');
+    </SCript>
+</body>
+</html>

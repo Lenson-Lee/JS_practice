@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li>apple</li>
+        <li>banana</li>
+        <li>grape</li>
+    </ul>
+
+
+    <script>
+
+        const $fruits = document.getElementById('fruits');
+
+        //li세 개를 각 각으로 부르기?
+
+        const children = [...$fruits.children];
+        const $apple = children[0];
+        const $banana = children[1];
+        const $grape = children[2];
+        //아쉬운게 세 개 정도면 하겠는데 많으면..이 네 줄을 한 줄로 처리하는 문법 쓰기
+
+
+        //구조분해할당 배열 디스트럭처링(ES6+)
+        const [$apple, $banana, $grape] = [...$fruits.children];
+
+        const $mango = document.createElement('li');
+        $mango.textContent = 'Mango';
+        $fruits.appendChild($mango);
+
+
+        //노드이동
+        $fruits.appendChild($banana);//이미 되어있는 애면 뽑아서 마지막에 넣은다.
+
+        $fruits.insertBefore($apple, $mango);//망고 앞으로 이동
+
+
+
+        //grape를 맨 마지막 노드 바로 앞으로 옮기기
+        //apple - mango - grape - banana순으로
+
+        $fruits.insertBefore($grape, $fruits.lastElementChild);
+        
+
+
+    </script>
+</body>
+</html>

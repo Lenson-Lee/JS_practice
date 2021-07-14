@@ -8,33 +8,25 @@
 </head>
 <body>
     
-
     <ul id="fruits">
         <li>apple</li>
+        <li>banana</li>
+        <li>grape</li>
     </ul>
 
 
-
     <script>
-        //apple밖에 없던 ul에 li를 추가하는 방법~~
-        //죨래 어려우니 복습 열심히 해야한다~~~
 
         const $fruits = document.getElementById('fruits');
 
-        //1. 요소노드생성
-        //<li></li>가 생긴다 
         const $li = document.createElement('li');
+        $li.textContent = 'mango';
 
+        // $fruits.insertBefore($li, $fruits.lastElementChild); 혹은 밑에 방법도 가능
 
-        //2. 텍스트 생성
-        //<li>banana</li>
-        $li.textContent = 'banana';
+        $fruits.insertBefore($li, document.querySelector('#fruits < li:nth-child(2'));
 
-
-        //3. li를 ul에 자식노드로 추가
-        $fruits.appendChild($li);
-
+        $fruits.insertBefore($li, $fruits.firstElementChild.nextElementSibling);
     </script>
-
 </body>
 </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 class="theTitle">html 조작</h2>
+    <ul id="list">
+        <li class="obj1">list_2</li>
+        <li>list_3</li>
+        <li>list_4</li>
+        <li>list_5</li>
+    </ul>
+    <script>
+
+
+        //1. class="theTitle"인 요소의 자식요소를 innerHTML을 사용하여
+        //   <a href="#">요소 객체 조작</a>로 교체하세요.
+            const $title = document.querySelector('.theTitle');
+
+            $title.innerHTML = '<a href="#">요소 객체 조작</a>';
+
+            //=============해설===============
+
+            // document.querySelector('.theTitle').innerHTML = '<a href="#">요소 객체 조작</a>'
+
+            // //2. class="obj1"인 요소의 텍스트를 "리스트_2"로 변경하세요.
+            // const $obj = document.querySelector('.obj1');
+            // $obj.innerHTML = '리스트2';
+
+            //=============해설===============
+
+            // document.querySelector('.obj1').textContent = '리스트_2';
+
+        //### 여기부터는 innerHTML 사용 금지.
+
+
+
+        //3. id="list"인 요소의 마지막 위치에 새요소 "<li>list_6</li>"를 추가하세요. 
+            const $list = document.querySelector('#list');
+            const $liNew6 = document.createElement('li');
+
+            $liNew6.textContent = 'list_6';
+            $list.appendChild($liNew6);
+
+            //=============해설===============
+
+            // const $list = document.getElementById('list');
+            // const $li6 = document.createElement('li');
+            // $li6.textContent = 'list_6';
+            // $list.appendChild($li6);
+
+
+
+        //4. id="list"인 요소의 첫 위치에 새요소 "<li>list_1</li>"를 추가하세요.
+            const $liNew1 = document.createElement('li');
+
+            $liNew1.textContent = 'list_1';
+
+            $list.insertBefore($liNew1, $list.firstElementChild);
+
+            //=============해설===============
+
+            // const $li1 = $li6.cloneNode();
+            // $li1.textContent = 'list_1';
+            // $list.insertBefore($li1, $list.firstElementChild);
+
+
+
+        //5. class="obj1"인 요소를 깊은 복제후에 id="list"인요소 마지막 위치에 추가
+            const $objDeep = $obj.cloneNode(true);
+            $list.appendChild($objDeep);
+
+            //=============해설===============
+
+            // const $deep = document.querySelector('.obj1').cloneNode(true);
+            // $list.appendChild($deep);
+
+
+
+        //6. id="list"인 요소의 하위 <li>요소중 첫번째 요소 삭제
+            $list.removeChild($list.firstElementChild);
+
+            //=============해설이 동일해서 생략
+
+//?     //7. ul의 자식 노드를 전부 삭제하세요.
+            
+        //ul의 li를 배열에 모아서 반복문으로 하나씩 지우기?
+        // const $children = [...$list.children];
+        // for (let $li of $children) {
+        //     $list.removeChild($li);
+        // }
+
+        //7번 참조 자식요소 전체 삭제 함수
+        function clear($parent) {
+            //$parent의 자식을 다 지울예정
+            for (let $child of [...$parent.children]) {
+                $parent.removeChild($child);
+            }
+        }
+        //전체삭제를 자주 쓰겠다면 이 코드를 함수화 하여서 사용하기 -맨 위에 함수 만들었음
+        clear($list);
+
+
+
+    </script>
+</body>
+
+</html>
