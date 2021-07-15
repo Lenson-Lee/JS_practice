@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">클릭하세요</button>
+    <button id="btn2">클릭하세요2</button>
+
+        <!-- 강사쌤 꺼 참고해서 수정하고 다시 보기..... -->
+    <script>
+
+        function hello() {
+            alert('안녕하세요');
+        }
+
+
+        const $btn = document.getElementById('btn');
+        $btn.onclick = hello
+// 함수 이름만 적거어ㅑ한다.
+
+        const $btn2 = document.getElementById('btn2');
+
+
+        // 함수 리터럴방식
+        // const bye = functiion() {
+        //     alert('잘가');
+        // };
+        
+        // // $btn2.onclick = bye 이건 너무 번거로우니 한번에 함수로 
+        // $btn2.onclick = function() {
+        //     alert('잘가');
+        // }
+        $btn2.onclick = () => alert('잘가');
+
+
+        //프로퍼티 방식의 단점 : 하나의 이벤트당 하나의 핸들러만 대입할 수 있다.
+        //여러 개의 핸들러를 넣을 수 없다.
+
+        // $btn2.onclick = () => {}; 
+        $btn2.onclick = () => {
+            //위의 alert가 끝나고 실행하고 싶지만, 함수는 하나만 가능해서 alert가 삭제된다.
+            $btn2.style.background = 'tomato';
+        }; 
+
+        //이벤트 핸들러 제거
+        //$btn2.onclick = null;//기본값 (이벤트 없을때)
+
+    </script>
+
+</body>
+</html>

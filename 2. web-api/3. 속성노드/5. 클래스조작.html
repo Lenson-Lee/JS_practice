@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px; height: 100px;
+            background: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .red {
+            color: red;
+        }
+        .blue {
+            color: blue;
+        }
+        .circle {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box blue">안녕</div>
+<!-- 콘솔에서 element-properties에서 classList + classname를 보면 0: blue 는 따로 되어있고 box blue는 붙어있는 걸 앐 수 있다. -->
+
+    <!-- //아직 배우지 않은 이벤트를 써볼거임 -->
+    <button id="change">변경!</button>
+
+
+
+
+    <script>
+
+        const $box = document.querySelector('.box');
+
+        // $box.className = 'box blue';
+        //클래스 이름 자체가 바뀌어 버리니 실패
+
+        console.log($box.classList);
+        console.log($box.classList[0]); 
+                    
+        //요소에 없는 클래스 추가하는 법
+        $box.classList.add('circle');
+        $box.classList.add('abc', 'def', 'ghi'); 
+        
+        //요소에 클래스 제거
+        $box.classList.remove('blue');
+        $box.classList.remove('abc', 'ghi'); 
+
+        //요소에 특정클래스 유무 확인하기
+        console.log($box.classList.contains('red'));
+
+        $box.classList.add('blue');
+
+        //요소에 특정 클래스를 교체/변경
+        $box.classList.replace('blue','red');//올드토큰: 바꿀 대상 , 뉴 토큰: 새롭게 바꿀 이름
+
+        //toggle : 요소의 해당 클래스가 있으면 삭제,
+        //          없으면 추가
+
+        $box.classList.toggle('circle'); //지움
+        $box.classList.toggle('circle'); //추가
+
+        //이벤트
+        const $btn = document.getElementById('change');
+        $btn.onclick = e => {
+            
+            $box.classList.toggle('circle');
+            
+            //토글은 이 긴 글을 줄여준다.
+            // if ($box.classList.contains('circle')) {
+            //     $box.classList.remove('circle');
+            // } else {
+            //     $box.classList.add('circle');
+            // }
+        };
+
+
+
+
+
+
+</script>
+</body>
+</html>

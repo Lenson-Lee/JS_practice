@@ -28,6 +28,14 @@
 
         //input에 새로운 속성 추가
         $input.setAttribute('title', '기존에 없던 속성이다~');
+
+
+        //value속성을 제거
+        $input.removeAttribute('value');
+
+        //value속성이 존재하는지 여부 확인
+        console.log($input.hasAttribute('value'));//hasAttribute: ''가 있는지 확인. 콘솔 보면 true false로 나옴 
+        console.log($input.hasAttribute('title'));//value:false , title:true
     </SCript>
 </body>
 </html>

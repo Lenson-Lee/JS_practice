@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- data-(이후는 내가 지정하는 거다) -->
+
+    <ul class="users">
+        <li id="1" data-user-id="kim1234" data-role="common">kim</li>
+        <li id="2" data-user-id="kim4321" data-role="admin">hong</li>
+    </ul>
+
+    <script>
+
+        const $users = document.querySelector('.users');
+
+        //배열 디스트럭쳐링(구조분해 할당)
+        //첫번째 li -> users1 두번째 li -> users2
+        const [$user1, $user2] = [...$users.children];
+
+        console.log( $user1.getAttribute('id') );
+        console.log( $user1.getAttribute('data-user-id') ); //이렇게도 가능하지만 오타 확률이 높아 실수할 가능성도 높다.
+
+        //dataset 프로퍼티 활용
+        console.log($user1.dataset.userId);
+        console.log($user1.dataset.role);
+
+        $user2.dataset.userAddress = '대전시 서구';
+
+        $user1.dataset.role = 'seller';
+
+        //property지우기???
+        delete $user2.dataset.userAddress;
+    </script>
+</body>
+</html>
