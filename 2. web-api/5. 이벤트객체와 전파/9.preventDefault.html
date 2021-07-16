@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <a href="https://www.naver.com">네이버로 이동</a>
+
+    <script>
+        const $link = document.querySelector('a');
+
+        $link.onclick = e => {
+            //confirm함수 : 확인 창이 뜬다. 취소 눌러도 이동이 간다. 불린값을 받으니 i문을 작성하면 된다.
+            //취소 누르면 if문이 작동하도록 해야 해서! 붙임
+            if (!confirm ('정말로 이동할까요?')) {
+                e.preventDefault();
+            }
+
+        };
+    </script>
+</body>
+</html>

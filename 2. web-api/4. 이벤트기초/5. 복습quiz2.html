@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hide {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- #lunches.menu>span.title+ul>li*4 -->
+    <div id="lunches" class="menu">
+        <span class="title">추천메뉴 (click me)</span>
+        <ul>
+            <li>짜장면</li>
+            <li>돈가스</li>
+            <li>제육볶음</li>
+            <li>햄버거</li>
+        </ul>
+    </div>
+
+    <script>
+        //ul을 숨기기, 추천메뉴 화살표방향 바뀐다
+
+        const $title = document.querySelector('.title');
+        const $menu = document.querySelector('.menu');
+        const $ul = $menu.lastElementChild;
+
+        $ul.classList.add('hide')
+
+        $title.onclick = () => {
+            $ul.classList.toggle('hide');
+        }
+
+
+    </script>
+</body>
+</html>

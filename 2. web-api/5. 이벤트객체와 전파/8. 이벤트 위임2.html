@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #fruits {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+        #fruits li {
+            width: fit-content;
+            cursor: pointer; 
+            background: lightsteelblue;
+            margin-right: 20px;
+        }
+        .active {
+            color:crimson;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li id="apple" class="active">apple</li>
+        <li id="banana">banana</li>
+        <li id="grape">grape</li>
+    </ul>
+
+    <div>선택된 과일: <em class="msg">apple</em> </div>
+
+    <br>
+
+    <label>
+        # 새로운 과일 추가:
+        <input type="text" class="text-box">
+        <button id="add">추가</button>
+    </label>
+
+
+    <script>
+        const $fruits = document.getElementById('fruits');
+        const $msg = document.querySelector('.msg');
+
+        
+        function activate(e) {
+
+            //액티브를 부여할 때 e.target에 부여
+            //e.target이 ul에도 먹혀서 글자가 없는 공간을 누르면 ul에 들어가서 전체선택이 되는 버그.
+            //e.target이 li일떄만 행위가 일어나게 하고 li가 아닐떄 실행하지 않도록 하는 코드
+            
+            //e.target을 제한하는 방법 : 버블링 사용 시에 쓰기 좋은 코드.
+            //matches함수는 매치하는지 따짐. 
+            //=> !(e.target이 ul#fruits의 자식 li이 인가?) --> 매치하지 않을 때를 나타내는! 
+            if (!e.target.matches('#fruits > li')) {
+                return;
+            }
+
+
+            for (let $li of [...$fruits.children]) {
+                if ($li.classList.contains('active')) {
+                    $li.classList.remove('active');
+                    break;
+                }
+            }
+
+
+            e.target.classList.add('active');
+            $msg.textContent = e.target.getAttribute('id'); 
+        }
+
+        //최초 한번만 "ul"에 activate이벤트를 부여함
+        $fruits.addEventListener('click', activate); 
+        
+        //과일 동적 추가
+        const $addBtn = document.getElementById('add');
+        const $textBox = document.querySelector('.text-box');
+
+        $addBtn.addEventListener('click', e => {
+            const $li = document.createElement('li');
+            $li.textContent = $textBox.value;
+            $li.setAttribute('id', $li.textContent.toLowerCase()); //toLowerCase는 소문자로 바꾸기 
+
+            $fruits.appendChild($li);
+            $textBox.value = '';
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <input type="checkbox">
+    <em class="msg"></em>
+
+    <script>
+        const $checkbox = document.querySelector('input[type = checkbox]');
+        const $msg = document.querySelector('.msg');
+
+        //change event: input에 변경이 일어났을때의 이벤트
+        //event type이 인풋이 변경되었을때여서 change
+        $checkbox.addEventListener('change', e => {
+            //매개변수 하나면 화살표함수에서 소괄호 생략 가능
+            //실제로 이벤트가 발생한 태그
+            console.log(e.target); //콘솔 properties창에서 inpyt - checked 확인하면 불린값 확인 가능
+            
+            $msg.textContent = e.target.checked ? 'on' : 'off';
+        });
+    </script>
+</body>
+</html>

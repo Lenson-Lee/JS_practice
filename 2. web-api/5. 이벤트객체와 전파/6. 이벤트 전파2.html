@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .root {
+            width: 300px; height: 300px;
+            background: red;
+        }
+        .parent {
+            width: 200px; height: 200px;
+            background: green;
+        }
+        .child {
+            width: 100px; height: 100px;
+            background: blue;
+        }
+        .target {
+            width: 50px;height: 50px;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="root">
+        <div class="parent">
+            <div class="child">
+                <div class="target"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function bubbling(useCapture, stop) {
+            //useCapture: 캡쳐링 여부(논리) 위에서 내려오면서부터 터진다? true를 주면 방향이 밤껴서 위에서부터 터진다?
+            //버블링은 올라가면서 터지고 트루값을 주면 위에서아래로터진다?
+            //addEventListner에 true를 주면 @@@ 
+            //stop: 전파중지 여부(논리)
+            document.querySelector('body').addEventListener('click', e => {
+                alert('body');
+            }, useCapture);
+            document.querySelector('.root').addEventListener('click', e => {
+                alert('root');
+            }, useCapture);
+            document.querySelector('.parent').addEventListener('click', e => {
+                alert('parent');
+            }, useCapture);
+            document.querySelector('.child').addEventListener('click', e => {
+                alert('child');
+            }, useCapture);
+            document.querySelector('.target').addEventListener('click', e => {
+                alert('target');
+                if (stop) { //매개변수 stop이 true면 중지
+                    e.stopPropagation();
+                }
+            }, useCapture);
+        }
+        //캡쳐링을사용하지않고버블링을주고 전파를 중지하겠다 -> false,true
+        bubbling(false, true);
+    </script>
+</body>
+</html>

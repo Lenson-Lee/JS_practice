@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <p>아무곳이나 클릭하세요</p>
+    <em class="msg"></em>
+
+
+    <script>
+        const $msg = document.querySelector('.msg');
+
+        //문서전체에 클릭이벤트 부여 = document(루트모드?)
+        document.addEventListener('click',function (e) {
+            //function은 (무기명함수/익명함수) e는 어떤 이름도 가능
+            //개발자들이 보통 event를 줄여서 e라는 객체명으로 사용
+            console.log(e);
+            console.log(e.type);//click이라고 뜬다.
+            console.log(e.target);//다큐먼트가 뜬다.
+                                //콘솔보면 클릭 시 이벤트 정보에서 client X,Y를 알 수 있다.
+            $msg.textContent = `x: ${e.clientX}, y: ${e.clientY}`;
+
+        })
+    </script>
+
+
+</body>
+</html>

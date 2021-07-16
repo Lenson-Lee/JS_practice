@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #fruits {
+            padding: 50px;
+            border: 2px solid red;
+        }
+        #fruits > li {
+            background: yellow;
+            margin-bottom: 10px;
+        }
+        #fruits > li:first-child {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+        }
+
+    </style>
+</head>
+<body>
+    <ul id="fruits">
+        <li id="apple">apple</li>
+        <li id="banana">banana</li>
+        <li id="grape">grape</li>
+    </ul>
+
+    <script>
+        const $fruits = document.getElementById('fruits');
+        
+        $fruits.addEventListener('click', e => {
+            console.log('ul태그에서 이벤트 발생');
+            console.log('이벤트 실제 발생 요소', e.target);
+            console.log('이벤트가 부여된 요소:', e.currentTarget);
+            console.log('이벤트 전파 단계:', e.eventPhase);//버블링?
+        });
+
+
+        //타겟과 커렌트 타겟은 전파단계로 다를 수있다?
+        const $apple = $fruits.firstElementChild;
+        $apple.addEventListener('click', e => {
+            console.log('apple에서 이벤트가 발생함');
+            console.log('이벤트 실제 발생 요소', e.target);
+            console.log('이벤트가 부여된 요소:', e.currentTarget);
+            console.log('이벤트 전파 단계:', e.eventPhase);
+
+            //부모의 이벤트가일어나는걸 막고싶다 : 이벤트 전파 중지
+            e.stopPropagation();
+            
+        })
+    </script>
+</body>
+</html>
