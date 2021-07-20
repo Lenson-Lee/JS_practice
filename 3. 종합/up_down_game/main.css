@@ -102,3 +102,121 @@ section.main .number-wrapper h2 em {
 #numbers .icon:nth-child(4n) {
     background: orangered;
 }
+
+
+
+/* 애니메이션 */
+.result {
+/* 업다운을 감싸는 컨테이너 처리 */
+    position: absolute;
+    top: 50%;
+    right: 20%;
+    transform: translate(0%, -50%);
+}
+
+.result div {
+/* 업다운을 감싸는 원 처리 */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    background: rgb(46, 46, 46);    
+}
+#up {
+    background: red;
+}
+#down {
+    background: blue;
+}
+
+.result div.selected {
+    animation: jumping 0.3s infinite linear alternate;
+}
+/* alternate는 정방향 역방향 반복, infinite linear 균일하게 무제한 반복
+    -> 애니메이션을 한 방향만 만들어도 상하로 움직임 */
+@keyframes jumping {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+        
+    }
+    100% {
+        transform: translateY(-20px);
+
+    }
+}
+
+#finish {
+    width: 60%;
+    height: 200px;
+    background: tomato;
+    font-size: 80px;
+    font-weight: 700;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 200px;
+    color: #fff;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* 투명도만 낮추면 정답박스 위치의 숫자들이 클릭이 안되서 뒤로 보낼거다. */
+    opacity: 0;
+    z-index: -100;
+}
+#finish.show {
+    animation: showUp 1s linear forwards;
+}
+@keyframes showUp {
+    0% {
+        opacity: 0;
+        top: -50%;
+    }
+    50% {
+        opacity: 0.5;
+        top: 0;
+    }
+    100% {
+        opacity: 1;
+        top: 50%;
+        z-index: 100;
+    }
+    /* 다 쓰고 웹 콘솔에 들어가서 클래스 show 수동으로 주고 확인해보면 슥 하고 퍽 사라짐
+        -> 교안에 있는 fill-mode때문. fill모드는 기본으로 none 
+        -> 기존위치에서 애니메이션 시작지점으로 이동-동작- 기존위치로 돌아감.(z인덱스 -100으로 돌아간다는 뜻)
+        
+        :::forwards 혹은 both? 주기*/
+}
+
+/* 정답아이콘에 id="move"가 붙으면 아이콘이 커지면서 움직이는 애니메이션*/
+#move {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10;
+    border: 4px dashed #000;
+    animation: move 1s linear forwards;
+}
+@keyframes move {
+    0% {
+        top: 0;
+        transform: translateX(0) rotate(0) scale(1);
+    }
+    100% {
+        top: 10%;
+        transform: translateX(-50) rotate(720deg) scale(2);
+    }
+}
