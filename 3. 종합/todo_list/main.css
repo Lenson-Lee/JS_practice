@@ -1,0 +1,122 @@
+/* reset */
+a{
+    color: inherit;
+    text-decoration: none;
+}
+input, button {
+    background: none;
+    outline: none;
+    border: none;
+}
+
+
+
+/* layout */
+.wrapper {
+    background: #e9ecef;
+    padding-top: 64px;
+    height: 100vh;
+}
+
+section.todo-template {
+    background: red;
+    width: 512px;
+    border-radius: 5px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8)
+}
+section.todo-template .app-title {
+    background: #22b8cf;
+    color: #fff;
+    height: 64px;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section.todo-template .content {
+    background: #fff;
+}
+section.todo-template .content .todo-insert {
+    background: #495057;
+    display: flex;
+}
+
+/* input 과 button은 블럭요소가 아니다. */
+section.todo-template .content .todo-insert input {
+    flex: 1;
+    /* button에 플렉스를 주지 않으면 input만 플렉스 들어가고 100:0 비율로 들어가서 버튼은 자기의 본래 있는 영역만을 사용 */
+    padding: 8px;
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: #fff;
+}
+section.todo-template .content .todo-insert input::placeholder {
+    /* placeholder은 안먹히는 브라우저도 있다. 메이저는 거의 먹힘 */
+    color: #dee2e6;
+}
+section.todo-template .content .todo-insert button {
+    background: #868e96;
+    color: #fff;
+    padding: 0 16px;
+    font-size: 1.3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+section.todo-template .content .todo-insert button:hover {
+    background: #adb5bd;
+}
+
+/* ul */
+section.todo-template .content .todo-list {
+    /* 최소높이 */
+    min-height: 320px;
+    /* 32px 높이는 기본으로 가지되 요소가 늘어날때마다 520px까지는 늘어나다가 이후에 스크롤이 생김 */
+    max-height: 520px;
+    overflow: auto;
+}
+
+/* li */
+section.todo-template .content .todo-list .todo-list-item {
+    /* li속이 수평정령? + 하단의 체크박스 텍스트 레이블 영역 설정시에 플랙스 필요*/
+    display: flex;
+    padding: 16px;
+    /* aline-item: 내부아이템 수직에서 중앙으로 */
+    align-items: center;
+    /* background: #000; */
+}
+section.todo-template .content .todo-list .todo-list-item:nth-child(even) {
+    background: #f8f9fa;
+}
+
+/* 레이블? */
+section.todo-template .content .todo-list .todo-list-item .checkbox {
+    flex: 1;
+}
+section.todo-template .content .todo-list .todo-list-item .checkbox .checked {
+    color: #adb5bd;
+    text-decoration: line-through;
+}
+section.todo-template .content .todo-list .todo-list-item .checkbox input {
+    transform: scale(1.5);
+}
+
+section.todo-template .content .todo-list .todo-list-item .checkbox .text {
+    margin-left: 8px;
+}
+
+/* 아이콘 공통요소 */
+section.todo-template .content .todo-list .todo-list-item div {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+section.todo-template .content .todo-list .todo-list-item .modify {
+    color: green;
+    margin-right: 10px;
+}
+section.todo-template .content .todo-list .todo-list-item .remove {
+    color: red;
+}
