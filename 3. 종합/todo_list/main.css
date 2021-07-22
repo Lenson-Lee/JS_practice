@@ -96,7 +96,8 @@ section.todo-template .content .todo-list .todo-list-item:nth-child(even) {
 section.todo-template .content .todo-list .todo-list-item .checkbox {
     flex: 1;
 }
-section.todo-template .content .todo-list .todo-list-item .checkbox .checked {
+/* 눌렀을 때 완료 반응 */
+section.todo-template .content .todo-list .todo-list-item .checkbox.checked {
     color: #adb5bd;
     text-decoration: line-through;
 }

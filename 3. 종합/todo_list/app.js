@@ -43,12 +43,13 @@ function makeNewId() {
 
 //새 할 일을 화면에 렌더링하는 함수
 function renderNewToDo(newToDo) { //undefine 에러 뜨는 이유: 밑에서 호출할 때 (newToDo)가 입력이 안되어있었다..데이터 연결이 끊긴 너낌?
+    const $li = document.createElement('li');
+    $li.dataset.id = newToDo.id;
+    $li.classList.add('todo-list-item');
 
     // console.log(newToDo);
-
     //태그 양이 넘 많아서 html에서 복붙했다. (근데 실수하기 딱 좋은 코드..) => ul에 넣기 innerHTML
     const newElement = `
-    <li data-id="${newToDo.id}" class="todo-list-item">
     <label class="checkbox">
         <input type="checkbox">
         <span class="text">${newToDo.text}</span>
@@ -57,8 +58,11 @@ function renderNewToDo(newToDo) { //undefine 에러 뜨는 이유: 밑에서 호
     <div class="remove"><span class="lnr lnr-cross-circle"></span></div>
     </li>
     `;
+
+    $li.innerHTML = newElement;
     const $toDoList = document.querySelector('.todo-list');
-    $toDoList.innerHTML += newElement;
+    // $toDoList.innerHTML += newElement;
+    $toDoList.appendChild($li);
 }
 
 //할 일의 내용이 잘 입력되었는지 검사하는 함수
@@ -119,10 +123,96 @@ function insertTodoData() {
 
     //3. 입력 완료 후 input창 텍스트 지우기
     $todoText.value = '';
-    
-
-
 }
+
+
+//data-id값으로 배열을 탐색하여 아이디가 일치하는 객체의 인덱스를 반환
+function findIndexByDataId(dataId) {
+//for-of돌리면 몇 번째만에 돌렸는지 카운터를 세야함
+for(let i = 0; i < todos.length; i++){
+    //id가 아닌 id가 담긴 객체를 찾는중?
+    if (todos[i].id === dataId) {
+        return i; //n회차. 카운트역할
+    }
+    }
+    //반복문이 끝날때까지 id를 못찾아서 return이 안되었을 때: 탐색 실패 증거로 null반환.
+    return null;
+}
+
+
+//할 일 완료 처리 함수 정의
+function changeCheckState($label) {
+    /*
+        1. 체크가 된 label 태그(css참조)에 checked클래스를 추가해야 한다.
+        2. 이 함수에는 체크가 된 label태그의 정보가 필요함.
+        3. 이 label태그는 이벤트 핸들러가 알고 있다.
+    */
+    // $label.classList.add('checked') => 한 번 더 누르면 사라져야함 : toggle
+    $label.classList.toggle('checked');
+    /*  4. 문제상황 : css만 변하고 실제 데이터(done)는 변하지 않음.(false라는 뜻)
+        5. 만약 서버가 있었다면 서버에 완료상태를 반영해줘야 함.
+        6. todos배열의 객체에 접근해서 done값을 변경해줘야 함. 
+        7. 만약에 두번째 체크박스를 선택했다면 todos배열의 [1]인덱스'만'의 done값을 수정해야함.
+            특정 객체의 값에 접근하기 위해서는 id를 이용해야한다?
+            html보면 label태그 위 li태그를 보면 id가 있음 -> data-id속성 사용
+        8. label태그의 정보를 알고 있다면 그 부모태그 li에 접근할 수 있고, 그 태그의 data-id속성을 조회하면
+            객체의 id값을 얻을 수 있다.
+    */
+   console.log($label.parentNode.dataset.id); //data-id에서 data-(dash)는 빼고 적기?
+   const dataId = +$label.parentNode.dataset.id; //data-id="1" 은 문자열 string이어서 + 붙임
+    /*  9. id값을 기반으로 배열을 탐색하여 data-id와 일치하는 id프로퍼티를 가진 객체가 있는 인덱스를 찾아야함.
+        각자 다른 id로 중복값이 있으면 안된다.
+        */
+    const idx = findIndexByDataId(dataId);
+    console.log(`idx: ${idx}번`);
+
+    //10. 찾은 인덱스로 해당 객체에 접근해서 done값을 수정
+    // todos[idx].done = true;//체크해제하면 false로 바껴야 하는데.. (좌)영역 = (우)값 -> 우측의 값을 좌측의 영역으로 저장하라.
+    if (idx !== null) {
+        todos[idx].done = !todos[idx].done;
+    }
+    // todos[idx].done = !todos[idx].done;
+    // console.log(todos);
+}
+
+//할 일 삭제 처리 함수
+function removeToDoData($delTarget) {
+    //1. 삭제 대상 li태그를 ul에서 제거해야 함.
+    const $ul = document.querySelector('.todo-list');
+    $ul.removeChild($delTarget);
+
+    //2. todos배열에서 해당 객체 삭제
+    //todos.splice(인덱스(id),1);
+    const delIdx = findIndexByDataId(+$delTarget.dataset.id); //만든 함수 참고해서 쓰면 꿀
+    todos.splice(delIdx, 1);
+    // console.log();
+}
+
+
+
+
+//=========할 일 수정 처리 함수
+function modifyToDoData($modTarget) {
+    console.log($modTarget);
+
+    //텍스트요소에 접근
+
+    //span에 접근
+    const $modText = $modTarget.parentNode.parentNode.firstElementChild.lastElementChild;//더 간단한 방법은?
+    //console.log($modText);
+
+    //label에 접근
+    const $modLabel = $modTarget.parentNode.parentNode;
+    //console.log($label);
+
+    //input으로 바꾸기
+    // label.replacechild('input',$modText)
+    $modLabel.replaceChild(validateInputText, $modText);
+    
+    
+    //label 창으로 가서 input으로 바꿔조야해 input- createElement? class value같이....span을 교체.....
+}
+
 
 
 //3. 메인 실행부
@@ -144,4 +234,49 @@ function insertTodoData() {
         // console.log('추가버튼 클릭');
         insertTodoData(); 
     })
+
+
+    //할 일 완료(체크박스) 이벤트
+    //모든 체크박스를 감싸는 부모 리스트에 버블링. 근데 각각의 부모 label(x) 공통의 부모 ul(o)
+    const $todoList = document.querySelector('.todo-list');
+    $todoList.addEventListener('change', e => {
+        console.log('체크박스 체인지 이벤트 발생');
+        //원형 아이콘들은 클릭이벤트라 변경 안되었다.
+        
+        //체크되었다면? -> span의 css가 변해야한다.
+        //e.tatget 쓸 때 누군지 봐야한다. 체크박스에서 누르면 타겟 뜨는데 다른 여백 눌렀을때도 체크박스 뜨는지 봐야함
+        //nextsibling 사용해서 span에 접근(css에서 먼저 설정해둔 값을 보면 label에 붙여야한다. 함수 생성으로 가보기)
+        console.log(e.target.nextElementSibling);
+        //체크박스에 변화가 생겼을때 css변동 처리 함수 호출
+
+        // console.log(e.target.parentNode);
+        changeCheckState(e.target.parentNode);
+    })
+
+    //할 일 삭제버튼 클릭 이벤트
+    $todoList.addEventListener('click', e => {
+        //console.log('삭제버튼 클릭됨!', e.target);
+        //부모태그 버블링으로 수정태그도 함꼐 선택된다?
+        //수정버튼은 .remove가 아닌 modify
+        if (!e.target.matches('.remove span')) return;
+        console.log('삭제버튼 클릭됨!', e.target);
+
+        //console.log(e.target.parentNode.parentNode);
+        removeToDoData(e.target.parentNode.parentNode);
+    })
+
+    //===============할 일 수정버튼 클릭 이벤트
+    $todoList.addEventListener('click', e => {
+        if (!e.target.matches('.modify span')) return;
+        console.log('수정버튼 클릭됨!', e.target);
+        
+        
+
+        modifyToDoData(e.target); //아이콘에 접근
+        
+    })
+    //수정이완료되면 객체의 배열의 수정property접근?
+    //label 창으로 가서 input으로 바꿔조야해 input- createElement? class value같이....span을 교체.....
+    //==============수정 클릭 시 텍스트창 수정 가능하게 되야한다..input?
+
 })();
