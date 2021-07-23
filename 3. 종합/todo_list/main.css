@@ -109,6 +109,25 @@ section.todo-template .content .todo-list .todo-list-item .checkbox .text {
     margin-left: 8px;
 }
 
+
+/* 수정아이콘 클릭 시 인풋창 디자인 */
+section.todo-template .content .todo-list .todo-list-item .checkbox .modify-input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-left: 64px;
+    padding: 4px;    
+    box-sizing: border-box;
+    font-size: 12px;
+    width: 200px;
+    
+}
+/* 수정모드 진입? */
+section.todo-template .content .todo-list .todo-list-item .checkbox .modify-input:focus {
+    outline: #e20;
+    border: 2px solid #e20;
+    /* box-shadow: 0 0 10px #e20; */
+}
+
 /* 아이콘 공통요소 */
 section.todo-template .content .todo-list .todo-list-item div {
     font-size: 1.5em;

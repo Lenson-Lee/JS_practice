@@ -191,26 +191,63 @@ function removeToDoData($delTarget) {
 
 
 
-//=========할 일 수정 처리 함수
-function modifyToDoData($modTarget) {
-    console.log($modTarget);
-
-    //텍스트요소에 접근
-
-    //span에 접근
-    const $modText = $modTarget.parentNode.parentNode.firstElementChild.lastElementChild;//더 간단한 방법은?
-    //console.log($modText);
-
-    //label에 접근
-    const $modLabel = $modTarget.parentNode.parentNode;
-    //console.log($label);
-
-    //input으로 바꾸기
-    // label.replacechild('input',$modText)
-    $modLabel.replaceChild(validateInputText, $modText);
+//할 일 수정모드 진입 이벤트 처리 함수
+function enterModifyMode($modSpan) {
     
+    //버튼 모양을 교체 즉, 클래스 교체.
+    $modSpan.classList.replace('lnr-undo','lnr-checkmark-circle');
     
-    //label 창으로 가서 input으로 바꿔조야해 input- createElement? class value같이....span을 교체.....
+    //텍스트 span을 input:text로 교체
+    //const 부모노드 = (클릭한버튼 근처의 라벨을 가져와야해서 querrySelector 안된다.)
+    const $label = $modSpan.parentNode.previousElementSibling
+    // console.log($parentNode);
+    const $textSpan = $label.lastElementChild;
+    // console.log($spanNode);
+    //부모노드.replaceChild(인풋노드, 스팬노드);
+
+    //******이걸 내가 만들어야 했어~!!
+    const $modInput = document.createElement('input');
+
+    $modInput.setAttribute('type', 'text');
+
+    //스팬에 있던 텍스트를 인풋 밸류에 넣는법?
+    $modInput.setAttribute('value',$textSpan.textContent);
+
+    //css 주기위한 단계.
+    $modInput.classList.add('modify-input');
+
+    $label.replaceChild($modInput, $textSpan);
+
+}
+
+//할 일 수정 완료 이벤트 처리 함수
+function modifyToDoData($checkSpan) {
+
+    //버튼 모양을 원래대로 되돌려야한다.
+    $checkSpan.classList.replace('lnr-checkmark-circle', 'lnr-undo');
+    console.log('수정버튼 돌아옴!');
+
+    //input:text를 span.text로 교체
+    const $label = $checkSpan.parentNode.previousElementSibling;
+    const $modInput = $label.lastElementChild;
+
+    //newSpan
+    const $newSpan = document.createElement('span');
+    $newSpan.classList.add('text');
+    //실시간 변동값 가져오려면 .value 써야함
+    // $newSpan.textContent = $modInput.getAttribute('value'); (X)
+    $newSpan.textContent = $modInput.value;
+
+    $label.replaceChild($newSpan, $modInput);
+
+    console.log(todos);//확인해보면 실제 데이터텍스트값은 그대로다 -> 해당 배열에 접근해서 텍스트값을 변경해준다.
+    //배열 데이터 수정
+    const idx = findIndexByDataId(+$label.parentNode.dataset.id);
+    todos[idx].text = $newSpan.textContent;
+
+
+    // 인풋에서 텍스트를 변경할 때에도 체인지이벤트여서 체크박스에 버그가 생김
+    //체인지 이벤트는 체크박스 체크할 때만 작동하도록 수정해야한다.
 }
 
 
@@ -241,6 +278,9 @@ function modifyToDoData($modTarget) {
     const $todoList = document.querySelector('.todo-list');
     $todoList.addEventListener('change', e => {
         console.log('체크박스 체인지 이벤트 발생');
+
+        if(!e.target.matches('.checkbox input[type=checkbox')) return;
+
         //원형 아이콘들은 클릭이벤트라 변경 안되었다.
         
         //체크되었다면? -> span의 css가 변해야한다.
@@ -265,14 +305,28 @@ function modifyToDoData($modTarget) {
         removeToDoData(e.target.parentNode.parentNode);
     })
 
-    //===============할 일 수정버튼 클릭 이벤트
+    //===============할 일 수정 클릭 이벤트 (수정모드 진입, 수정완료)
+                                        // 두 개를 한 번에 하려면 matches사용시에 가능.
     $todoList.addEventListener('click', e => {
-        if (!e.target.matches('.modify span')) return;
-        console.log('수정버튼 클릭됨!', e.target);
+        //onclick은 지금상황에서 못 쓴다.
+        //이벤트 발생 요소가 수정모드 진입버튼 이라면
+        if (e.target.matches('.modify span.lnr-undo')) {
+            // console.log(e.target);
+            enterModifyMode(e.target);
+
+        }
+        //이벤트 발생 요소가 수정확인 버튼이라면
+        else if (e.target.matches('.modify span.lnr-checkmark-circle')) {
+            modifyToDoData(e.target);
+            // console.log(e.target);
+        } else {
+            return;
+        }
+        // console.log('수정버튼 클릭됨!', e.target);
         
         
 
-        modifyToDoData(e.target); //아이콘에 접근
+        // enterModifyMode(e.target); //아이콘에 접근
         
     })
     //수정이완료되면 객체의 배열의 수정property접근?
