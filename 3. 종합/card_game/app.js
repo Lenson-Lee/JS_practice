@@ -2,7 +2,7 @@
 
 //가로세로 설정
 const horizon = 4;
-const vertical = 3;
+const vertical = 4;
 
 const cardTotal = horizon * vertical;
 // console.log(cardTotal);
@@ -24,7 +24,11 @@ let colorArray = [
     "gray",
     "gray",
     "yellowgreen",
-    "yellowgreen"
+    "yellowgreen",
+    "slateblue",
+    "slateblue",
+    "forestgreen",
+    "forestgreen"
 ]
 
 //재시작 할 때 사용할 색깔 배열: slice를 통해 colorArray를 복사한다. ================??왜 굳이? 섞는걸 복사해서 해야하나?
@@ -36,19 +40,12 @@ let color = [];
 //정답 카드 넣는 배열
 let cardFinish = [];
 
-
 //버튼객체생성
 const $hint = document.getElementById("hint");
 const $view = document.getElementById("view");
 const $replay = document.getElementById("replay");
 
 
-
-
-
-
-
-//=========================메인실행부
 
 //랜덤배열 만들기
 const shuffle = () => {
@@ -124,12 +121,6 @@ const setting = (hori, verti) => {
     setTimeout(() => {
         clickFlag = true;
     }, 3000);
-
-
-
-
-
-
 
 
 
@@ -248,7 +239,7 @@ const setting = (hori, verti) => {
         $Cards.forEach((aCard, index) => {
             setTimeout(() => {
                 aCard.classList.add("flip");
-            }, 500 + 100 * index);
+            }, 1000 + 100 * index);
             //+100 * index: 순차적으로 펼쳐지게끔 한다. 공식이 뭘까..
         });
         alert('다음엔 성공할 거에요!');

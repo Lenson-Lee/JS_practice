@@ -23,8 +23,8 @@ section.main {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
-    overflow: hidden;
+/* 
+    overflow: hidden; */
     z-index: 500;
 }
 
@@ -37,7 +37,7 @@ section.main .main-title {
     color: #14113a;
 }
 section.main .cardwrapper {
-    padding: 50px 20px;
+    /* padding: 50px 20px; */
 }
 section.main .cardwrapper h2 {
     font-size: 22px;
@@ -64,8 +64,8 @@ section.main .cardwrapper h2 em{
 
 /* 카드 뒤집었을때(앞면) 모습 */
 #card-container .card {
-    width: 80px;
-    height: 100px;
+    width: 100px;
+    height: 140px;
     margin: 0 auto;
     perspective: 500px;
 /*     
@@ -145,6 +145,7 @@ section.main .cardwrapper h2 em{
 .buttons #hint:hover {
     transform: translate(10%);
     background: pink;
+    color: forestgreen;
 }
 .buttons #view:hover {
     transform: translate(10%);
