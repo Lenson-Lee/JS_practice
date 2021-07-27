@@ -81,9 +81,12 @@ section.main .cardwrapper h2 em{
     transition: transform 0.8s;
     transform-style: preserve-3d;
 }
+
+/* toggle: flip시 효과 */
 #card-container .card.flip .card-inner {
     transform: rotateY(180deg);
 }
+
 #card-container .card-front, .card-back {
     position: absolute;
     width: 100%;
