@@ -36,9 +36,7 @@ section.main .main-title {
     /* background: #1a1d53; */
     color: #14113a;
 }
-section.main .cardwrapper {
-    /* padding: 50px 20px; */
-}
+
 section.main .cardwrapper h2 {
     font-size: 22px;
     text-align: center;
@@ -74,6 +72,10 @@ section.main .cardwrapper h2 em{
     align-items: center;
     cursor: pointer; */
 }
+/* #card-container .card .hov:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+} */
 #card-container .card-inner {
     position: relative;
     width: 100%;
@@ -145,7 +147,6 @@ section.main .cardwrapper h2 em{
 .buttons #hint:hover {
     transform: translate(10%);
     background: pink;
-    color: forestgreen;
 }
 .buttons #view:hover {
     transform: translate(10%);
