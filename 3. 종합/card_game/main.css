@@ -203,7 +203,7 @@ section.main .cardwrapper h2 em{
 }
 .buttons #hint:hover {
     transform: translate(10%);
-    background: skyblue;
+    background: rgb(135, 206, 235);
 }
 .buttons #view:hover {
     transform: translate(10%);
