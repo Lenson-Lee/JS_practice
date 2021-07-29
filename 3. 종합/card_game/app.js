@@ -84,7 +84,8 @@ const $hint = document.getElementById("hint");
 const $view = document.getElementById("view");
 const $replay = document.getElementById("replay");
 
-
+//힌트 갯수 설정
+let hintcount = 5;
 
 //랜덤배열 만들기
 const shuffle = () => {
@@ -272,60 +273,56 @@ const setting = (hori, verti) => {
 
 
 
-    //버튼..이벤트...뭔가 이상한데......
+    //버튼이벤트
     /*
         1. 랜덤값인데 계속 두번쨰 카드만 선택이 된다. => 랜덤값 수정
         2. 정답을 맞췄음에도 계속 실행이 된다 => if문에서 !cardFinish.include(card)
 
     */
+    
+
     $hint.addEventListener('click', e => {
-
-
-        //*****************힌트 카운트 기능 넣기
-        
-        //성공한 카드는 제외하고 돌리기
-        //if i가 cardFinish의 배열에 없는 요소일 때 :cardHintList의 배열에서 뽑기? ->실패
-        //flip이 없는 애들만 돌리기...는...안되나...?
-        //get-hint클래스가 있는 요소들만 뽑아서 랜덤 돌리기..
-            
+    
+        hintcount--;
+        if(hintcount > 0) {
+            //힌트 카운트 기능 + 몇 회 남았는지 event로 설정
+            //성공한 카드는 제외하고 돌리기
+            //if i가 cardFinish의 배열에 없는 요소일 때 :cardHintList의 배열에서 뽑기? ->실패
+            //flip이 있는 요소들(성공한 카드들)의 get-hint 제거 후 get-hint클래스가 있는 요소를 뽑아서 힌트 돌리기
+            // 조건 : cardcolor === cardHintList[i]
+            //       !cardFlip.classList.contains('flip')
+                
             clickFlag = false;
-            
+
+            //힌트 조건 맞는 카드들과 랜덤으로 선택하기
             const $card = document.getElementsByClassName("get-hint");
             const i = Math.floor(Math.random() * $card.length);
-
-
-
             
             let cardFlip = $card[i];
             console.log('gethint카드 i번째');
             console.log(cardFlip);
-            //랜덤 카드의 생상값
-            // let cardcolor = cardFlip.querySelector(".card-back").style.backgroundColor
-
-            // console.log('힌트리스트');
-            // console.log(cardHintList);
-
-            // console.log('힌트리스트에서 i번째');
-            // console.log(cardHintList[i]);
-
-            // console.log('힌트카드');
-            // console.log(cardFlip);
-
-            // 조건 : cardcolor === cardHintList[i]
-            //       !cardFlip.classList.contains('flip')
-  
-            //if문 원본.
-            if (!cardFlip.classList.contains('flip')){
-                
-                $card[i].classList.add("flip");
             
+            //힌트 카운트 이벤트
+            $hint.addEventListener('mouseenter', () => {
+                $hint.textContent = `${hintcount}회 남음`;
+            })
+            $hint.addEventListener('mouseleave', () => {
+                $hint.textContent = '힌트 보기';
+            })
+            
+            //힌트 실행 함수
+            if (!cardFlip.classList.contains('flip')){
+                    
+                $card[i].classList.add("flip");
+                
                 setTimeout(() => {
                     $card[i].classList.remove("flip");
                     clickFlag = true;
                 }, 1000);
             }
-    })
+        }
 
+    })
 
     //정답 이벤트
     $view.addEventListener('click', e => {
@@ -356,3 +353,16 @@ const setting = (hori, verti) => {
 
 shuffle();
 setting(horizon, vertical);
+
+
+               //랜덤 카드의 생상값
+                // let cardcolor = cardFlip.querySelector(".card-back").style.backgroundColor
+    
+                // console.log('힌트리스트');
+                // console.log(cardHintList);
+    
+                // console.log('힌트리스트에서 i번째');
+                // console.log(cardHintList[i]);
+    
+                // console.log('힌트카드');
+                // console.log(cardFlip);
