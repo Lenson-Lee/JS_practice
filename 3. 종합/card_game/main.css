@@ -7,55 +7,69 @@ a{
 /* layout */
 .wrapper {
     font-size: 18px;
-    background: #14113a;
+    background: #2e334b;
     height: 100vh;
 
     position: relative;
     /* z-index: -1000; */
 }
-/* .level {
-    width: 40%;
-    background: skyblue;
-    border-radius: 10px;
-    
-    position: relative;
+
+/* 난이도 설정 box */
+.container {
+    background: white;
+    position: absolute;
+    width: 65%;
+    height: 500px;
     left: 50%;
     top: 50%;
+    border-radius: 30px;
     transform: translate(-50%, -50%);
-    z-index: 5000;
-    justify-content: center;
-    flex-direction:r ;
-}
-.level .leveltext {
-    padding: 50px 20px 10px;
-    font-size: 34px;
-    font-weight: 700;
-    text-align: center;
-    
-    color: #14113a;
-    position: relative;
-}
-.level div {
+    z-index: 500000;
     display: flex;
-    
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
 }
-.level .lvbutton {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    
-    border-radius: 10%;
-    font-size: 22px;
+
+/* 공통으로 들어갈 CSS */
+.container .level {
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    margin-top: 140px;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+}
+#select {
+    font-size: 36px;
     font-weight: 700;
-    color: #14113a;
-    
-    padding: 30px ;
-    
-    margin: 50px 30px;
-    background: #ffffff; 
-} */
+    color: #2e334b;
+    position: absolute;
+    top: 50px;
+}
+.container p {
+    padding-top: 110px;
+    padding-bottom: 15px;
+    color: white;
+    opacity: 0.9;
+}
+.container div {
+    font-size: 22px;
+    color: white;
+}
+.container .level.level1 {
+    background: skyblue;
+}
+.container .level.level2 {
+    background: rgb(90, 111, 205);
+}
+.container .level3 {
+    background: midnightblue;
+}
+
+
+
+/* 전체 css */
 section.main {
     width: 50%;
     background: #fff;
@@ -76,7 +90,7 @@ section.main .main-title {
     font-weight: 700;
     text-align: center;
     /* background: #1a1d53; */
-    color: #14113a;
+    color: #2e334b;
 }
 
 section.main .cardwrapper h2 {
@@ -86,7 +100,7 @@ section.main .cardwrapper h2 {
 section.main .cardwrapper h2 em{
     font-size: 1.2em;
     font-weight: 700;
-    color: #1a1d53;
+    color: #2e334b;
 }
 #card-container {
     width: 70%;
@@ -184,7 +198,7 @@ section.main .cardwrapper h2 em{
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
-    background: #3b5f88;  
+    background: #8d95a0;  
 
 }
 .buttons #hint:hover {
