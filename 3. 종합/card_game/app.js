@@ -247,6 +247,8 @@ function cardGame() {
                                 setTimeout(() => {
                                     alert('게임 끝!');
 
+                                    const levelBox = document.querySelector('.container');
+                                    levelBox.style.zIndex = "-1500";
                                     $cardContainer.innerHTML = "";
                                     cardFinish = [];
                                     color = [];
@@ -353,9 +355,10 @@ function cardGame() {
             });
         })
     };
-
+    
     shuffle();
     setting(cardTotal);
+
 };
 
 
